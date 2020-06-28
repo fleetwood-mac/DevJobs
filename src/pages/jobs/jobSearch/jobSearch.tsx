@@ -25,8 +25,15 @@ const JobSearch = ({ searchTerm }: JobSearchProps) => {
             .then(response => setJobs(response.data as Job[]))
     }
 
+    const headerParams = {
+        hasImage: false,
+        hasBackButton: true,
+        hasLogo: true
+    }
+
     return (
         <SafeAreaView>
+            <Header params={headerParams} />
             <View style={styles.inputContainer}>
                 <InputText value={search} onChangeText={doSearch} />
                 <IconButton color="black" iconName="sliders"/>
