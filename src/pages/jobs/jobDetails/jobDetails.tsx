@@ -8,8 +8,8 @@ type JobDetailProps = {
     job: Job
 }
 
-const JobDetails: React.FC = (props) => {
+const JobDetails= ({ job }: JobDetailProps) => {
   return <View />;
 }
 
-export default jobDetails;
+export default JobDetails;
