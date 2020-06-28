@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button, Text, StyleSheet } from 'react-native';
+import { View, Button, Text, StyleSheet, Modal } from 'react-native';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 import { Job } from '../../../model/job';
 import axios from 'axios';
@@ -16,6 +16,7 @@ type JobSearchProps = {
 const JobSearch = ({ searchTerm }: JobSearchProps) => {
     const [search, setSearch] = useState<string>(searchTerm);
     const [jobs, setJobs] = useState<Job[]>([new Job()]);
+    const [modal, setModal] = useState<boolean>(false);
 
     const doSearch = (text: string) => {
         setSearch(text)
@@ -36,8 +37,20 @@ const JobSearch = ({ searchTerm }: JobSearchProps) => {
             <Header params={headerParams} />
             <View style={styles.inputContainer}>
                 <InputText value={search} onChangeText={doSearch} />
-                <IconButton color="black" iconName="sliders"/>
+                <IconButton color="black" iconName="sliders" onPress={() => setModal(true)}/>
             </View>
+            <Modal
+                presentationStyle="pageSheet"
+                animationType="slide"
+                transparent={false}
+                visible={modal}
+                onRequestClose={() => setModal(false)}
+            >
+                <SafeAreaView>
+                    <Text>Hello World</Text>
+                    <Button title="fechar" onPress={() => setModal(false)}></Button>
+                </SafeAreaView>
+            </Modal>
             <FlatList 
                 data={jobs}
                 renderItem={({ item }) => <Text>{item.title}</Text>}

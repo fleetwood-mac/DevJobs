@@ -33,11 +33,11 @@ const IconButton = ({ iconName, color, onPress }: buttonProps) => {
     });
 
     return (
-    <TouchableOpacity onPress={onPress}>
-        <View style={styles.button}>
-            <Feather name={iconName} size={28} color={iconColor()}/>
-        </View>
-    </TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
+            <View style={styles.button}>
+                <Feather name={iconName} size={28} color={iconColor()}/>
+            </View>
+        </TouchableOpacity>
     );
 }
 
