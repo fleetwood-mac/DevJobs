@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './home/home';
-import JobDetails from './jobs/jobDetails/jobDetails';
+import JobSearch from './jobs/jobSearch/jobSearch';
 
 const appStack = createStackNavigator();
 
@@ -17,8 +17,8 @@ export default function Routes()
     return(
         <NavigationContainer>
             <appStack.Navigator screenOptions={appStackScreenOptions}>
+                <appStack.Screen name="JobSearch" component={JobSearch}/>
                 <appStack.Screen name="Home" component={Home}/>
-                <appStack.Screen name="JobDetail" component={JobDetails}/>
             </appStack.Navigator>
         </NavigationContainer>
     );
