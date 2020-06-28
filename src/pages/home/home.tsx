@@ -3,16 +3,28 @@ import React from 'react';
 import { View, Text, SafeAreaView } from "react-native";
 
 import style from './style'
+import Header from '../../components/header/header';
+import ParamsHeader from '../../entities/headerParameter';
 
-export default class Home extends React.Component 
+let headerConfig : ParamsHeader = 
 {
-    render() {
-        return(
-            <SafeAreaView style={style.container}>
-                <View style={style.view}>
-                    <Text>AAAaa</Text>
-                </View>
-            </SafeAreaView>
-        )
+    params:
+    {
+        hasBackButton:true,
+        hasImage:false,
+        hasLogo:true
     }
+}
+
+export default function Home()
+{
+
+
+    return(
+        <SafeAreaView style={style.container}>
+            <View style={style.view}>
+                <Header params={headerConfig.params}/>
+            </View>
+        </SafeAreaView>
+    )
 }
