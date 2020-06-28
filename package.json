@@ -8,12 +8,15 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.1.0",
+    "@expo-google-fonts/roboto": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.6.1",
     "@react-navigation/stack": "^5.6.2",
     "@types/react-navigation": "^3.4.0",
     "axios": "^0.19.2",
     "expo": "~38.0.1",
+    "expo-font": "~8.2.1",
     "expo-status-bar": "^1.0.0",
     "lodash.remove": "^4.7.0",
     "react": "~16.11.0",
