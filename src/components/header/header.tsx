@@ -10,6 +10,7 @@ import UserImg from '../../../assets/17004.png'
 import {FontAwesome, Feather} from '@expo/vector-icons';
 
 import {useNavigation} from '@react-navigation/native'
+import IconButton from '../buttons/iconButton';
 
 
 export default function Header(props:ParamsHeader)
@@ -32,11 +33,7 @@ export default function Header(props:ParamsHeader)
         console.log("Abriu");
         return(
             <View style={style.headerBody}>
-                <TouchableOpacity onPress={()=>{navigate.goBack()}}>
-                    <View style={style.backButton}>
-                        <Feather name="arrow-left" size={28} color="#000000"/>
-                    </View>
-                </TouchableOpacity>
+                <IconButton color="white" iconName="arrow-left" onPress={()=>{navigate.goBack()}}/>
                 <Text style={{marginRight:28}}>Dev Jobs</Text>
                 <View/>
             </View>
