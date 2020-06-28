@@ -17,8 +17,8 @@ export default function Routes()
     return(
         <NavigationContainer>
             <appStack.Navigator screenOptions={appStackScreenOptions}>
-            <appStack.Screen name="JobSearch" component={JobSearch}/>
-            <appStack.Screen name="Home" component={Home}/>
+                <appStack.Screen name="Home" component={Home}/>
+                <appStack.Screen name="JobSearch" component={JobSearch}/>
             </appStack.Navigator>
         </NavigationContainer>
     );
