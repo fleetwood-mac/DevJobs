@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 
 import style from './style'
 
 export default function Home()
 {
     return(
-        <View style={style.container}>
-            <Text>AAAaa</Text>
-        </View>
+        <SafeAreaView style={style.container}>
+            <View style={style.view}>
+                <Text>AAAaa</Text>
+            </View>
+        </SafeAreaView>
     )
 }

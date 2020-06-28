@@ -6,8 +6,11 @@ export default StyleSheet.create(
 {
     container:
     {
-        flex:1,
+        flex:1
+    },
+    view:
+    {
+        paddingTop:20,
         paddingHorizontal:24,
-        paddingTop: Constants.statusBarHeight + 20,
     }
 })
