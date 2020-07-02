@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import { useFonts, Roboto_900Black, Roboto_500Medium, Roboto_300Light, Roboto_100Thin } from '@expo-google-fonts/roboto';
 
-import { View, Text, SafeAreaView, Button, NativeSyntheticEvent, TextInputEndEditingEventData } from "react-native";
+import { View, Text, SafeAreaView, Button, NativeSyntheticEvent, TextInputEndEditingEventData, Image } from "react-native";
 
 import {Feather} from '@expo/vector-icons';
+
+import google from '../../../assets/google.png'
 
 import style from './style'
 import Header from '../../components/header/header';
@@ -34,7 +36,11 @@ export default function Home()
 
     const findJobs = (event:NativeSyntheticEvent<TextInputEndEditingEventData>) =>
     {
-        console.log(`Evento recebido, texto para pesquisa: ${filterValue}`)
+        if(filterValue != "")
+        {
+            console.log(`Evento recebido, texto para pesquisa: ${filterValue}`);    
+        }
+        
     }
 
       if(!fontsLoaded)
@@ -74,6 +80,16 @@ export default function Home()
                                     <Text style={{fontFamily:'Roboto_100Thin',fontSize:12,opacity:1, color:"white",marginRight:4}}>R$10-15/Decada</Text> 
                                     <View style={{display:"flex",padding:2,backgroundColor:'#545454',height:18,justifyContent:"center",alignItems:'center',borderRadius:6}}>
                                         <Text style={{fontFamily:'Roboto_300Light',fontSize:12,opacity:0.8, color:"white",marginRight:4}}> 24/7</Text>
+                                    </View>
+                                </View>
+
+                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
+                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
+                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
+                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
+                                            <Text style={{color:"white", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Google Inc.</Text>
+                                            <Text style={{color:"white", fontFamily:'Roboto_100Thin',fontSize:10}}>California</Text>
+                                        </View>
                                     </View>
                                 </View>
                                 
