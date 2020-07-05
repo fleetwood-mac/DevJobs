@@ -7,14 +7,22 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import InputText from '../../../components/inputText/inputText';
 import IconButton from '../../../components/buttons/iconButton';
 import Header from '../../../components/header/header';
+import { NavigationScreenProp } from 'react-navigation';
+import { NavigationState, useRoute, RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../routes';
 
-// import { Container } from './styles';
-type JobSearchProps = {
+interface NavigationParams {
     searchTerm: string;
+  }
+  
+
+type JobSearchProps = {
+    navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
-const JobSearch = ({ searchTerm }: JobSearchProps) => {
-    const [search, setSearch] = useState<string>(searchTerm);
+const JobSearch = ({ navigation }: JobSearchProps) => {
+    const route = useRoute<RouteProp<RootStackParamList, 'JobSearch'>>();
+    const [search, setSearch] = useState<string>(route.params.searchTerm);
     const [jobs, setJobs] = useState<Job[]>([new Job()]);
     const [modal, setModal] = useState<boolean>(false);
 
@@ -36,7 +44,7 @@ const JobSearch = ({ searchTerm }: JobSearchProps) => {
         <SafeAreaView>
             <Header params={headerParams} />
             <View style={styles.inputContainer}>
-                <InputText value={search} onChangeText={doSearch} />
+                <InputText value={search} onChangeText={doSearch} placeholder="Type a term to search"/>
                 <IconButton color="black" iconName="sliders" onPress={() => setModal(true)}/>
             </View>
             <Modal
