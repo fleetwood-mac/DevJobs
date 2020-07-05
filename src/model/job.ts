@@ -10,4 +10,5 @@ export class Job {
     description!: string;
     how_to_apply!: string;
     company_logo!: string;
+    isMarked?: boolean;
 }

@@ -17,7 +17,10 @@ const InputText = ({ value, onChangeText, onEndEditing, placeholder }: InputProp
             backgroundColor: '#FFF',
             borderRadius: 12,
             padding: 12,
-            color: '#666967'
+            color: '#666967',
+            shadowColor:"black",
+            shadowOpacity:0.3,
+            shadowOffset:{width:0,height:2}
         },
     });
     return (

@@ -4,8 +4,15 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './home/home';
 import JobSearch from './jobs/jobSearch/jobSearch';
+import { Job } from '../model/job';
 
-const appStack = createStackNavigator();
+export type RootStackParamList = {
+    Home: undefined,
+    JobSearch: { searchTerm: string },
+    JobDetail: { Job: Job }
+}
+
+const RootStack = createStackNavigator<RootStackParamList>();
 
 export default function Routes()
 {
@@ -16,10 +23,10 @@ export default function Routes()
 
     return(
         <NavigationContainer>
-            <appStack.Navigator screenOptions={appStackScreenOptions}>
-                <appStack.Screen name="Home" component={Home}/>
-                <appStack.Screen name="JobSearch" component={JobSearch}/>
-            </appStack.Navigator>
+            <RootStack.Navigator screenOptions={appStackScreenOptions}>
+                <RootStack.Screen name="Home" component={Home}/>
+                <RootStack.Screen name="JobSearch" component={JobSearch}/>
+            </RootStack.Navigator>
         </NavigationContainer>
     );
 }

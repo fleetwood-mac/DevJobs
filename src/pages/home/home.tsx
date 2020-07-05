@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useFonts, Roboto_900Black, Roboto_500Medium, Roboto_300Light, Roboto_100Thin } from '@expo-google-fonts/roboto';
 
-import { View, Text, SafeAreaView, Button, NativeSyntheticEvent, TextInputEndEditingEventData, Image, FlatList, ScrollView } from "react-native";
+import { View, Text, SafeAreaView, Button, NativeSyntheticEvent, TextInputEndEditingEventData, Image, GestureResponderEvent, ScrollView } from "react-native";
 
 import {Feather} from '@expo/vector-icons';
 
@@ -12,6 +12,12 @@ import style from './style'
 import Header from '../../components/header/header';
 import ParamsHeader from '../../entities/headerParameter';
 import InputText from '../../components/inputText/inputText';
+import {
+    NavigationParams,
+    NavigationScreenProp,
+    NavigationState,
+  } from 'react-navigation';
+import IconButton from '../../components/buttons/iconButton';
 
 let headerConfig : ParamsHeader = 
 {
@@ -22,8 +28,12 @@ let headerConfig : ParamsHeader =
         hasLogo:true
     }
 }
+interface HomeProps {
+    navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
+  
 
-export default function Home()
+const Home = ({ navigation }: HomeProps) => 
 {
     let [filterValue,setFilterValue] = useState("");
 
@@ -34,13 +44,9 @@ export default function Home()
         Roboto_100Thin
       });
 
-    const findJobs = (event:NativeSyntheticEvent<TextInputEndEditingEventData>) =>
+    const findJobs = (event:NativeSyntheticEvent<TextInputEndEditingEventData> | GestureResponderEvent) =>
     {
-        if(filterValue != "")
-        {
-            console.log(`Evento recebido, texto para pesquisa: ${filterValue}`);    
-        }
-        
+        navigation.navigate('JobSearch', { searchTerm: filterValue })
     }
 
       if(!fontsLoaded)
@@ -62,8 +68,9 @@ export default function Home()
                         <Text style={{marginBottom:8}}>Bem vindo!</Text>
                         <Text style={{fontFamily:'Roboto_900Black',fontSize:30,flexWrap:"wrap",marginBottom:30}}>O que quer encontrar de novo hoje?</Text>
                         
-                        <View style={{marginBottom:30,shadowColor:"black",shadowOpacity:0.3,shadowOffset:{width:0,height:2}}}>
+                        <View style={{marginBottom:30, flexDirection: "row", justifyContent: 'space-around', alignItems: 'center'}}>
                             <InputText value={filterValue} onChangeText={(e)=>{setFilterValue(e)}} onEndEditing={findJobs} placeholder="Qual vaga deseja pesquisar?"></InputText>
+                            <IconButton color="black" iconName="search" onPress={findJobs}/>
                         </View>
 
                         <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:18}}><Text style={{fontFamily:'Roboto_500Medium',fontSize:18}}>Vagas em destaque</Text><Text style={{fontFamily:'Roboto_100Thin',fontSize:12,opacity:0.8}}>Ver todas</Text></View>
@@ -320,3 +327,5 @@ export default function Home()
       }
         
 }
+
+export default Home;
