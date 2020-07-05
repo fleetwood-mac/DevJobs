@@ -1,38 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { View, Button, Text, StyleSheet, Modal } from 'react-native';
-import { TextInput, FlatList } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import { Job } from '../../../model/job';
 import axios from 'axios';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import InputText from '../../../components/inputText/inputText';
 import IconButton from '../../../components/buttons/iconButton';
 import Header from '../../../components/header/header';
-import { NavigationScreenProp } from 'react-navigation';
-import { NavigationState, useRoute, RouteProp } from '@react-navigation/native';
+import { useRoute, RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../routes';
+import JobCard from '../../../components/jobCard/jobCard';
 
-interface NavigationParams {
-    searchTerm: string;
-  }
-  
-
-type JobSearchProps = {
-    navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-}
-
-const JobSearch = ({ navigation }: JobSearchProps) => {
-    const route = useRoute<RouteProp<RootStackParamList, 'JobSearch'>>();
-    const [search, setSearch] = useState<string>(route.params.searchTerm);
+const JobSearch = () => {
+    const { params: { searchTerm }} = useRoute<RouteProp<RootStackParamList, 'JobSearch'>>();
+    const [search, setSearch] = useState<string>(searchTerm);
     const [jobs, setJobs] = useState<Job[]>([new Job()]);
     const [modal, setModal] = useState<boolean>(false);
 
     const doSearch = (text: string) => {
-        setSearch(text)
-        
+        setSearch(text);
         axios
             .get(`https://jobs.github.com/positions.json?search=${search}&markdown=true`)
             .then(response => setJobs(response.data as Job[]))
     }
+
+    useEffect(() => doSearch(searchTerm), []);
 
     const headerParams = {
         hasImage: false,
@@ -61,7 +53,7 @@ const JobSearch = ({ navigation }: JobSearchProps) => {
             </Modal>
             <FlatList 
                 data={jobs}
-                renderItem={({ item }) => <Text>{item.title}</Text>}
+                renderItem={({ item }) => <JobCard job={item} />}
                 keyExtractor={item => item.id}
             />
         </SafeAreaView>
@@ -71,7 +63,8 @@ const JobSearch = ({ navigation }: JobSearchProps) => {
 const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: "row",
-        justifyContent: 'center'
+        justifyContent: 'space-around',
+        alignItems: 'center'
     },
     input: {
         width: '80%',

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useFonts, Roboto_900Black, Roboto_500Medium, Roboto_300Light, Roboto_100Thin } from '@expo-google-fonts/roboto';
 
-import { View, Text, SafeAreaView, Button, NativeSyntheticEvent, TextInputEndEditingEventData } from "react-native";
+import { View, Text, SafeAreaView, Button, NativeSyntheticEvent, TextInputEndEditingEventData, GestureResponderEvent } from "react-native";
 
 import {Feather} from '@expo/vector-icons';
 
@@ -15,6 +15,7 @@ import {
     NavigationScreenProp,
     NavigationState,
   } from 'react-navigation';
+import IconButton from '../../components/buttons/iconButton';
 
 let headerConfig : ParamsHeader = 
 {
@@ -41,7 +42,7 @@ const Home = ({ navigation }: HomeProps) =>
         Roboto_100Thin
       });
 
-    const findJobs = (event:NativeSyntheticEvent<TextInputEndEditingEventData>) =>
+    const findJobs = (event:NativeSyntheticEvent<TextInputEndEditingEventData> | GestureResponderEvent) =>
     {
         navigation.navigate('JobSearch', { searchTerm: filterValue })
     }
@@ -65,8 +66,9 @@ const Home = ({ navigation }: HomeProps) =>
                         <Text style={{marginBottom:8}}>Bem vindo!</Text>
                         <Text style={{fontFamily:'Roboto_900Black',fontSize:30,flexWrap:"wrap",marginBottom:30}}>O que quer encontrar de novo hoje?</Text>
                         
-                        <View style={{marginBottom:30}}>
+                        <View style={{marginBottom:30, flexDirection: "row", justifyContent: 'space-around', alignItems: 'center'}}>
                             <InputText value={filterValue} onChangeText={(e)=>{setFilterValue(e)}} onEndEditing={findJobs} placeholder="Qual vaga deseja pesquisar?"></InputText>
+                            <IconButton color="black" iconName="search" onPress={findJobs}/>
                         </View>
 
                         {/* cards populares */}
