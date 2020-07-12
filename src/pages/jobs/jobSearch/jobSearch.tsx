@@ -14,7 +14,7 @@ import JobCard from '../../../components/jobCard/jobCard';
 const JobSearch = () => {
     const { params: { searchTerm }} = useRoute<RouteProp<RootStackParamList, 'JobSearch'>>();
     const [search, setSearch] = useState<string>(searchTerm);
-    const [jobs, setJobs] = useState<Job[]>([new Job()]);
+    const [jobs, setJobs] = useState<Job[]>();
     const [modal, setModal] = useState<boolean>(false);
 
     const doSearch = (text: string) => {

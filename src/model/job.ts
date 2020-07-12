@@ -11,4 +11,19 @@ export class Job {
     how_to_apply!: string;
     company_logo!: string;
     isMarked?: boolean;
+
+    constructor() {
+        this.id = '',
+        this.type = '';
+        this.url = '';
+        this.created_at = new Date();
+        this.company = '';
+        this.company_url = '';
+        this.location = '';
+        this.title = '';
+        this.description = '';
+        this.how_to_apply = '';
+        this.company_logo = '';
+        this.isMarked = false;
+    }
 }
