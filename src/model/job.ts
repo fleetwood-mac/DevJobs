@@ -9,7 +9,7 @@ export class Job {
     title!: string;
     description!: string;
     how_to_apply!: string;
-    company_logo!: string;
+    company_logo!: any;
     isMarked?: boolean;
 
     constructor() {

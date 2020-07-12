@@ -19,6 +19,8 @@ import {
   } from 'react-navigation';
 import IconButton from '../../components/buttons/iconButton';
 import JobCardSmall from '../../components/jobCardSmall/jobCardSmall';
+import JobCard from '../../components/jobCard/jobCard';
+import { Job } from '../../model/job';
 
 let headerConfig : ParamsHeader = 
 {
@@ -37,6 +39,21 @@ interface HomeProps {
 const Home = ({ navigation }: HomeProps) => 
 {
     let [filterValue,setFilterValue] = useState("");
+
+    let jobMock : Job = 
+    {
+        "id": "ca0b5423-240b-4979-9cab-b863e9a04f4a",
+        "type": "Full Time",
+        "url": "https://jobs.github.com/positions/ca0b5423-240b-4979-9cab-b863e9a04f4a",
+        "created_at": new Date("Fri Jul 10 09:05:14 UTC 2020"),
+        "company": "Echobot Media Technologies GmbH",
+        "company_url": "https://www.echobot.de/",
+        "location": "Karlsruhe (Germany)",
+        "title": "Fullstack PHP-Entwickler",
+        "description": "<p><strong>Fullstack PHP-Entwickler (m/w/d)</strong></p>\n<p>Echobot ist ein führender Anbieter von Cloud Software für Sales &amp; Marketing Intelligence im europäischen Raum. Bereits heute nutzen über 1.000 Unternehmen aller Branchen und Größen die Lösungen von Echobot zur Digitalisierung ihrer Marketing- und Vertriebsprozesse. Deine Aufgabe ist es, unsere Tools noch besser zu machen. Dazu betreust Du deren kompletten Software-Lifecycle-Prozess: von der Konzeption neuer Features über die Implementierung, das Testing und schlussendlich auch deren Betrieb.</p>\n<p><strong>Deine Aufgaben:</strong></p>\n<ul>\n<li>Du entwickelst Frontend, Middleware, Backend und Batch-Prozesse für unsere SaaS-Software.</li>\n<li>Du übernimmst eigene Projekte und triffst selbstständig Entscheidungen.</li>\n<li>Du arbeitest gemeinsam im Team an umfangreicheren Projekten.</li>\n<li>In Deinen Projekten bist Du für den kompletten Software-Lifecycle verantwortlich.</li>\n<li>Du bist im Austausch mit unserer Forschungsabteilung und arbeitest Dich regelmäßig in neueste Technologien ein.</li>\n</ul>\n<p><strong>Was wir Dir bieten:</strong></p>\n<ul>\n<li>Du entscheidest selbst, ob Du 32, 35 oder 40 Stunden arbeiten möchtest (Rufbereitschaft nicht erforderlich).</li>\n<li>Ein familiäres Arbeitsumfeld: Kein Dresscode, Duz-Kultur und regelmäßige Aktivitäten, z.B. der Entwickler-Pub-Abend.</li>\n<li>Bei uns entwickelst Du richtige Software, KEINE Plugins für Shop- oder CMS-Systeme.</li>\n<li>Deine Chefs sind Informatiker und verstehen Dich.</li>\n<li>Wir sind ein technikaffines Unternehmen und möchten Dich langfristig fördern und fordern.</li>\n<li>Die Möglichkeit, Deine Kollegen vor Vertragsunterzeichnung kennen zu lernen.</li>\n<li>Bei uns gibt es eine Kaffee- &amp; Obst-Flatrate sowie eine gratis Snackbox.</li>\n</ul>\n<p><strong>Was Du mitbringen solltest:</strong></p>\n<ul>\n<li>Du bringst ein abgeschlossenes Studium oder relevante Berufserfahrung mit.</li>\n<li>Du besitzt bereits gute Programmierkenntnisse.</li>\n<li>Du kannst gut mit Menschen umgehen und arbeitest gerne im Team.</li>\n<li>Du beherrschst bereits Technologien wie PHP7, Git/Mercurial, Linux, SSH, Mysql/PostgreSQL, Kafka/Redis, Solr/Elasticsearch, AngularJS und VueJS. Den Rest lernst Du bei uns dazu.</li>\n</ul>\n<p><strong>Interessiert?</strong></p>\n<p>Wir freuen uns auf deine Bewerbung. Bitte benutze dafür unser <a href=\"https://ltpx.nl/uvstvZu\"><strong>Online Bewerbungstool</strong></a> und schick uns deine Bewerbungsunterlagen.<img src=\"https://camo.githubusercontent.com/236c66295406e285c463f7442dc7caa1fd75fc52/68747470733a2f2f62636f6e74726f6c2e62726f636b6d657965722e6e6c2f747261636b2e7068703f6f7264657269643d313731373537\"></p>\n",
+        "how_to_apply": "<p><a href=\"https://ltpx.nl/dGMnX8Y\">Click here to apply</a></p>\n",
+        "company_logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png"
+    }
 
     let [fontsLoaded] = useFonts({
         Roboto_900Black,
@@ -76,7 +93,7 @@ const Home = ({ navigation }: HomeProps) =>
 
                         <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:18}}><Text style={{fontFamily:'Roboto_500Medium',fontSize:18}}>Vagas em destaque</Text><Text style={{fontFamily:'Roboto_100Thin',fontSize:12,opacity:0.8}}>Ver todas</Text></View>
                         {/* cards populares */}
-                            <View style={{width:230,height:120,backgroundColor:"black",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column'}}>
+                            {/* <View style={{width:230,height:120,backgroundColor:"black",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column'}}>
                                 
                                 <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:4}}>
                                     <Text style={{color:"white",fontFamily:"Roboto_500Medium"}}>Vaga pra se fuder de graça</Text>
@@ -100,7 +117,9 @@ const Home = ({ navigation }: HomeProps) =>
                                     </View>
                                 </View>
                                 
-                            </View>
+                            </View> */}
+
+                            <JobCard job={jobMock}/>
 
                         <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:18}}><Text style={{fontFamily:'Roboto_500Medium',fontSize:18}}>Vagas recentes</Text><Text style={{fontFamily:'Roboto_100Thin',fontSize:12,opacity:0.8}}>Ver todas</Text></View>
                         
