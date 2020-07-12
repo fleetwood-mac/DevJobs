@@ -18,6 +18,7 @@ import {
     NavigationState,
   } from 'react-navigation';
 import IconButton from '../../components/buttons/iconButton';
+import JobCardSmall from '../../components/jobCardSmall/jobCardSmall';
 
 let headerConfig : ParamsHeader = 
 {
@@ -75,8 +76,6 @@ const Home = ({ navigation }: HomeProps) =>
 
                         <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:18}}><Text style={{fontFamily:'Roboto_500Medium',fontSize:18}}>Vagas em destaque</Text><Text style={{fontFamily:'Roboto_100Thin',fontSize:12,opacity:0.8}}>Ver todas</Text></View>
                         {/* cards populares */}
-                        <View style={{display:'flex',flexDirection:'row', marginBottom:20}}>
-                            
                             <View style={{width:230,height:120,backgroundColor:"black",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column'}}>
                                 
                                 <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:4}}>
@@ -102,221 +101,12 @@ const Home = ({ navigation }: HomeProps) =>
                                 </View>
                                 
                             </View>
-                        </View>
 
                         <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginBottom:18}}><Text style={{fontFamily:'Roboto_500Medium',fontSize:18}}>Vagas recentes</Text><Text style={{fontFamily:'Roboto_100Thin',fontSize:12,opacity:0.8}}>Ver todas</Text></View>
+                        
                         <View style={{display:'flex',flexDirection:'column',height:'100%'}}>
                             
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10,overflow:'scroll'}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
-
-                            <View style={{width:'100%',height:50,backgroundColor:"white",borderRadius:10,padding:12,paddingLeft:14,display:'flex',flexDirection:'column',marginBottom:10}}>
-      
-                                <View style={{display:'flex',justifyContent:'flex-end',flex:1}}>
-                                    <View style={{height:30,display:'flex',flexDirection:'row',marginLeft:-5}}>
-                                        <Image source={google} style={{width:35,height:35,marginRight:10}}/>
-                                        <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                                            <Text style={{color:"black", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Senior Developer Node.js</Text>
-                                            <Text style={{color:"black", fontFamily:'Roboto_100Thin',fontSize:10}}>Google Inc.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                
-                            </View>
+                            <JobCardSmall image={google} description="aaaaaa" company="Google Inc."/>
 
                         </View>
                     

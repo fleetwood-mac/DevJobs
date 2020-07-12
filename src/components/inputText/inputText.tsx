@@ -13,7 +13,7 @@ type InputProps = {
 const InputText = ({ value, onChangeText, onEndEditing, placeholder }: InputProps) => {
     const styles = StyleSheet.create({
         input: {
-            width: '100%',
+            width: '80%',
             backgroundColor: '#FFF',
             borderRadius: 12,
             padding: 12,

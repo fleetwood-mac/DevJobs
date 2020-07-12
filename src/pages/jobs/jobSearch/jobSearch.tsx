@@ -16,15 +16,41 @@ const JobSearch = () => {
     const [search, setSearch] = useState<string>(searchTerm);
     const [jobs, setJobs] = useState<Job[]>([new Job()]);
     const [modal, setModal] = useState<boolean>(false);
+    let [pagination, setPagination] = useState(1);
+    let [isSearching, setIsSearching] = useState(false);
 
-    const doSearch = (text: string) => {
-        setSearch(text);
-        axios
-            .get(`https://jobs.github.com/positions.json?search=${search}&markdown=true`)
-            .then(response => setJobs(response.data as Job[]))
+    const doSearch = () => {
+
+        if(!isSearching)
+        {
+            axios
+            .get(`https://jobs.github.com/positions.json?page=${pagination}&search=${search}&markdown=true`)
+            .then(response =>
+                {
+                    setJobs(jobs.concat(response.data as Job[]));
+                    setIsSearching(false);
+                });
+        }
+
     }
 
-    useEffect(() => doSearch(searchTerm), []);
+    const doSearchAgainPaginate = () =>
+    {
+        if(!isSearching)
+        {
+            setPagination(pagination++);
+            doSearch();    
+        }
+    }
+
+    const newSearch = () =>
+    {
+        setJobs([]);
+        setPagination(1);
+        doSearch();
+    }
+
+    useEffect(() => doSearch(), []);
 
     const headerParams = {
         hasImage: false,
@@ -36,7 +62,7 @@ const JobSearch = () => {
         <SafeAreaView>
             <Header params={headerParams} />
             <View style={styles.inputContainer}>
-                <InputText value={search} onChangeText={doSearch} placeholder="Type a term to search"/>
+                <InputText value={search} onChangeText={setSearch} onEndEditing={newSearch} placeholder="Type a term to search"/>
                 <IconButton color="black" iconName="sliders" onPress={() => setModal(true)}/>
             </View>
             <Modal
@@ -54,7 +80,9 @@ const JobSearch = () => {
             <FlatList 
                 data={jobs}
                 renderItem={({ item }) => <JobCard job={item} />}
-                keyExtractor={item => item.id}
+                onEndReached={doSearchAgainPaginate}
+                onEndReachedThreshold={0.5}
+                keyExtractor={(item,index) => 'key'+index}
             />
         </SafeAreaView>
     );
@@ -64,7 +92,8 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: "row",
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom:10
     },
     input: {
         width: '80%',

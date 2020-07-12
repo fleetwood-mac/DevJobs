@@ -9,6 +9,7 @@ export default StyleSheet.create(
         paddingHorizontal:8,
         justifyContent:"space-between",
         alignItems:"center",
+        height:60
     },
     backButton:
     {
