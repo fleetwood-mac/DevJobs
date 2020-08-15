@@ -8,10 +8,28 @@ type ImageButtonProps = {
     source: {
         uri: string,
     },
-    onPress?: ((event: GestureResponderEvent) => void);
+    onPress?: ((event: GestureResponderEvent) => void),
+    theme: 'black' | 'white';
 }
 
-const ImageButton = ({ source, onPress }: ImageButtonProps) => {
+const ImageButton = ({ source, onPress, theme }: ImageButtonProps) => {
+    const styles = StyleSheet.create({
+        container: {
+            width: 40,
+            height: 40,
+            display:"flex",
+            flexDirection:"row",
+            justifyContent:"center",
+            alignItems:"center",
+            borderRadius:15,
+            backgroundColor: theme
+        },
+        image: {
+            width: 28,
+            height: 28,
+        }
+    });
+    
     const [uri, setUri] = useState<string>('');
     
     useEffect(() =>  {
@@ -32,21 +50,5 @@ const ImageButton = ({ source, onPress }: ImageButtonProps) => {
         </TouchableOpacity>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        width: 40,
-        height: 40,
-        display:"flex",
-        flexDirection:"row",
-        justifyContent:"center",
-        alignItems:"center",
-        borderRadius:10
-    },
-    image: {
-        width: 28,
-        height: 28,
-    }
-});
 
 export default ImageButton

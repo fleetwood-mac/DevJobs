@@ -77,13 +77,13 @@ const JobSearch = () => {
                     <Button title="fechar" onPress={() => setModal(false)}></Button>
                 </SafeAreaView>
             </Modal>
-            <FlatList 
-                data={jobs}
-                renderItem={({ item }) => <JobCard job={item} />}
-                onEndReached={doSearchAgainPaginate}
-                onEndReachedThreshold={0.5}
-                keyExtractor={(item,index) => 'key'+index}
-            />
+            <Text>{ jobs ? jobs?.length : 0 } Job Opportunity Found </Text>
+                <FlatList
+                    contentContainerStyle={styles.jobContainer}
+                    data={jobs}
+                    renderItem={({ item }) => <JobCard job={item} />}
+                    keyExtractor={item => item.id}
+                />
         </SafeAreaView>
     );
 }
@@ -95,12 +95,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom:10
     },
-    input: {
-        width: '80%',
-        backgroundColor: '#FFF',
-        borderRadius: 12,
-        padding: 12,
-        color: '#666967'
+    jobContainer: {
+        flexDirection: "column",
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     button: {
 

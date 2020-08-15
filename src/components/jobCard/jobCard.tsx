@@ -1,40 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { Job } from '../../model/job';
 import {Feather} from '@expo/vector-icons';
 import ImageButton from '../buttons/imageButton';
 import { TouchableHighlight } from 'react-native-gesture-handler';
+import google from '../../../assets/google.png'
+import { TouchableOpacity } from 'react-native';
 
 type JobCardProps = {
-    job: Job
+    job: Job,
+    large?: boolean
 }
 
 const JobCard = ({ job }: JobCardProps) => {
-    const cardColor = () => {
-        if(job.isMarked) return 'black'
+    const [bgColor, setBgColor] = useState<'black' | 'white'>(job.isMarked ? 'black' : 'white');
+    const [textColor, setTextColor] = useState<'black' | 'white'>(job.isMarked ? 'white' : 'black');
 
-        return 'white';
+    const seeDetails = () => {
+
     }
+    
     const styles = StyleSheet.create({
         container: {
             width:230,
             height:120,
-            backgroundColor:"black",
+            backgroundColor: bgColor,
             borderRadius:10,
             padding:12,
             paddingLeft:14,
             display:'flex',
             flexDirection:'column'
+            
         },
         titleContainer: {
             display:'flex',
             flexDirection:'row',
             justifyContent:'space-between',
             alignItems:'center',
-            marginBottom:4,
+            marginBottom:4
         },
         titleText: {
-            color:"white",
+            color:textColor,
             fontFamily:"Roboto_500Medium"
         },
         detailContainer: {
@@ -43,13 +49,53 @@ const JobCard = ({ job }: JobCardProps) => {
             alignItems:'center',
             marginBottom:4
         },
+        typeContainer: {
+            display:"flex",
+            padding:2,
+            backgroundColor:'#545454',
+            height:18,
+            justifyContent:"center",
+            alignItems:'center',
+            borderRadius:6
+        },
         typeText: {
-            
+            fontFamily:'Roboto_300Light',
+            fontSize:12,
+            opacity:0.8, 
+            color:bgColor,
+            marginRight:4
         },
         companyContainer: {
             display:'flex',
             justifyContent:'flex-end',
             flex:1
+        },
+        companyDetailContainer: {
+            height:30,
+            display:'flex',
+            flexDirection:'row',
+            marginLeft:-5
+        },
+        companyLogo: {
+            width:35,
+            height:35,
+            marginRight:10
+        },
+        companyTextContainer: {
+            display:'flex',
+            flexDirection:'column',
+            paddingVertical:4
+        },
+        companyText: {
+            color:textColor, 
+            fontFamily:'Roboto_500Medium',
+            fontSize:12, 
+            marginBottom:1
+        },
+        locationText: {
+            color:textColor, 
+            fontFamily:'Roboto_100Thin',
+            fontSize:10
         }
     });
 
@@ -60,53 +106,45 @@ const JobCard = ({ job }: JobCardProps) => {
         return text
     }
 
+    const setMarked = () => {
+        if(job.isMarked) {
+            job.isMarked = false;
+            setBgColor('white');
+            setTextColor('black');
+        } else {
+            job.isMarked = true;
+            setBgColor('black');
+            setTextColor('white');
+        }
+    }
+
     return (
-        // <View style={styles.container}>
-        //     <View style={styles.titleContainer}>
-        //         <Text style={styles.titleText}>{pipeTitle(job.title)}</Text>
-        //         <Feather name="bookmark" size={28} color={"lightgray"}/>
-        //     </View>
-        //     <View style={styles.detailContainer}>
-        //         <Text style={styles.typeText}>{job.type}</Text>
-        //     </View>
-        //     <View style={styles.companyContainer}>
-        //         <View>
-        //             <ImageButton source={{uri: job.company_logo}} />
-        //         </View>
-        //         <View>
-        //             <Text>{job.company}</Text>
-        //         </View>
-        //     </View>
-        // </View>
-
-        <View style={styles.container}>
-                                        
+        <TouchableOpacity style={styles.container}>
             <View style={styles.titleContainer}>
-                <Text style={styles.titleText}>{pipeTitle(job.title)}</Text>
-                <Feather name='bookmark' color="white"/>
+                <Text style={styles.titleText}>{ pipeTitle(job.title) }</Text>
+                <TouchableOpacity onPress={() => setMarked()}>
+                    <Feather name='bookmark' color="gray" size={20}></Feather>
+                </TouchableOpacity>
             </View>
-
+            
             <View style={styles.detailContainer}>
-                <Text style={{fontFamily:'Roboto_100Thin',fontSize:12,opacity:1, color:"white",marginRight:4}}>R$10-15/Decada</Text> 
-                <View style={{display:"flex",padding:2,backgroundColor:'#545454',height:18,justifyContent:"center",alignItems:'center',borderRadius:6}}>
-                    <Text style={{fontFamily:'Roboto_300Light',fontSize:12,opacity:0.8, color:"white",marginRight:4}}>{job.type}</Text>
+                <View style={styles.typeContainer}>
+                    <Text style={styles.typeText}>{ job.type }</Text>
                 </View>
             </View>
 
             <View style={styles.companyContainer}>
-                <View style={{display:'flex',flexDirection:'row'}}>
-                    <TouchableHighlight style={{width:35,height:35,marginRight:10}}>
-                        <Image source={{uri: job.company_logo}} style={{width:35,height:35,marginRight:10}}/>
-                    </TouchableHighlight>
-                    
-                    <View style={{display:'flex',flexDirection:'column',paddingVertical:4}}>
-                        <Text style={{color:"white", fontFamily:'Roboto_500Medium',fontSize:12, marginBottom:1}}>Google Inc.</Text>
-                        <Text style={{color:"white", fontFamily:'Roboto_100Thin',fontSize:10}}>California</Text>
+                <View style={styles.companyDetailContainer}>
+                    <Image source={google} style={styles.companyLogo}/>
+                    <View style={styles.companyTextContainer}>
+                        <Text style={styles.companyText}>{ pipeTitle(job.company) }</Text>
+                        <Text style={styles.locationText}>{ job.location }</Text>
                     </View>
                 </View>
             </View>
-
-        </View>);
+            
+        </TouchableOpacity>
+    );
 }
 
 export default JobCard;
